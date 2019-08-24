@@ -13,82 +13,23 @@ Plugin 'gmarik/Vundle.vim'
 
 " Colorschemes etc
 Plugin 'bling/vim-airline'              " cool looking statusbar #bling
+let g:airline_powerline_fonts = 1       " Airline powerline symbol set up
 Plugin 'flazz/vim-colorschemes'         " Collection of colorschemes
-Plugin 'vim-scripts/CSApprox'           " Colorschemes look (about) the same in gui and term
+
+" Mah bboiii tpope
+Plugin 'tpope/vim-commentary'           " commenting
+Plugin 'tpope/vim-fugitive'             " git support
+Plugin 'tpope/vim-sleuth'               " checks file for tab settings etc
+Plugin 'tpope/vim-surround'             " Parentheses etc
+Plugin 'tpope/vim-vinegar'              " enchances netrw (no need for NERDTree)
 
 " Generic plugins
-Plugin 'scrooloose/syntastic'           " syntax support
-Plugin 'tpope/vim-vinegar'              " enchances netrw (no need for NERDTree)
-Plugin 'tpope/vim-sleuth'               " checks file for tab settings etc
-Plugin 'tpope/vim-fugitive'             " git support
-Plugin 'Raimondi/delimitMate'           " auto-pairs (for brackets etc)
+Plugin 'dense-analysis/ale'             " lint engine
 Plugin 'majutsushi/tagbar'              " shows classes and functions
-Plugin 'tpope/vim-commentary'           " commenting
+nmap <F8> :TagbarToggle<CR>             " mapping Tagbar toggle to F8
 Plugin 'mhinz/vim-startify'             " fancy startscreen
-Plugin 'vim-scripts/TaskList.vim'       " Plugin for tracking todos and fixmes
-Plugin 'mileszs/ack.vim'                " Use ack in vim
-Plugin 'dhruvasagar/vim-table-mode'     " table mode
-Plugin 'SirVer/ultisnips'               " code snippet engine
-Plugin 'honza/vim-snippets'             " code snippets
-Plugin 'dkprice/vim-easygrep'           " find and replace
-Plugin 'xolox/vim-misc'                 " required by other plugins
-
 Plugin 'ajh17/VimCompletesMe'           " Simple autocomplete
 Plugin 'ludovicchabant/vim-gutentags'   " tags
-Plugin 'kien/ctrlp.vim'                 " goto
-
-" Language specific plugins
-" Plugin 'Valloric/YouCompleteMe'         " auto-completion for C family
-" Plugin 'rdnetto/YCM-Generator'
-Plugin 'vim-scripts/Vimchant'           " Spellchecking using enchant
-Plugin 'eagletmt/neco-ghc'              " Haskell autocomplete
-Plugin 'vim-latex/vim-latex'            " latex plugin
-Plugin 'itchyny/vim-haskell-indent'     " what it says on the tin
-Plugin 'racer-rust/vim-racer'           " Rust racer support
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-
-" default vimchant language
-let g:vimchant_spellcheck_lang = 'fi'
-
-" Eclim autocompletion in YCM
-" let g:EclimCompletionMethod = 'omnifunc'
-" Disable eclim for C
-" let g:EclimCValidate = 0
-
-" make YCM compatible with UltiSnips
-" let g:ycm_key_list_select_completion = ['<tab>', '<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<s-tab>"
-let g:UltiSnipsJumpBackwardTrigger = ""
-
-" Airline powerline symbol set up
-let g:airline_powerline_fonts = 1
-
-" mapping Tagbar toggle to F8
-nmap <F8> :TagbarToggle<CR>
-
-" Ycm global compile flags file
-let g:ycm_global_ycm_extra_conf = '~/dotfiles/ycm_extra_conf.py'
-" YCM uses ctags
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['flake8']
 
 
 " " All of your Plugins must be added before the following line
@@ -96,33 +37,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 
-
 " My own mappings and settings
 let mapleader = "\<Space>"  " Map space as leader
-nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>  " For local replace
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>      " For global replace
-
-" Force .md to be recognized as markdown instead of modula-2
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-" proper cmake commentstring
-autocmd FileType cmake setlocal commentstring=#\ %s
-
-" proper vhdl commentstring
-autocmd FileType vhdl setlocal commentstring=--\ %s
-
-" autowrap text in latex and plaintex
-autocmd FileType tex set tw=79
-autocmd FileType plaintex set tw=79
-
-" default filetype for .tex is latex instead of plaintex
-let g:tex_flavor = "latex"
-
-" Add include its subdirectories recursively to path
-set path+=/usr/include/**
-set path+=/usr/avr/include/**
-" Only show popup menu on auto-completion
-set completeopt=menuone
 " Start explore-mode (netrw) in a tree view
 let g:netrw_liststyle=3
 
